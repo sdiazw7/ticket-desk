@@ -64,4 +64,18 @@ describe('TicketApi', () => {
     req.flush(savedTicket);
     expect(result).toEqual(savedTicket);
   });
+
+  it('list() requests all tickets, newest first', () => {
+    const tickets = [buildTicket({ id: '2' }), buildTicket({ id: '1' })];
+    let result: Ticket[] | undefined;
+
+    api.list().subscribe((list) => (result = list));
+
+    const req = http.expectOne((r) => r.url === baseUrl);
+    expect(req.request.method).toBe('GET');
+    expect(req.request.params.get('_sort')).toBe('-createdAt');
+
+    req.flush(tickets);
+    expect(result).toEqual(tickets);
+  });
 });

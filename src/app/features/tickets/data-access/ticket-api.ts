@@ -17,6 +17,11 @@ export class TicketApi {
     return this.http.post<Ticket>(this.baseUrl, createTicket(newTicket));
   }
 
+  /** All tickets, newest first (json-server v1 sorts with `_sort`; `-` means descending). */
+  list(): Observable<Ticket[]> {
+    return this.http.get<Ticket[]>(this.baseUrl, { params: { _sort: '-createdAt' } });
+  }
+
   getById(id: string): Observable<Ticket> {
     return this.http.get<Ticket>(`${this.baseUrl}/${encodeURIComponent(id)}`);
   }

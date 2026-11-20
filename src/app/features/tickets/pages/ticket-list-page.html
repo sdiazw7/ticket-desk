@@ -1,0 +1,41 @@
+<header class="page-header">
+  <h1>Tickets</h1>
+  <a routerLink="/tickets/new">New ticket</a>
+</header>
+
+@if (tickets.isLoading()) {
+  <app-loading-indicator label="Loading tickets..." />
+} @else if (tickets.error(); as error) {
+  <app-error-alert [message]="error.message" />
+} @else if (tickets.value(); as list) {
+  @if (list.length === 0) {
+    <p class="empty">No tickets yet.</p>
+  } @else {
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Ticket</th>
+          <th scope="col">Title</th>
+          <th scope="col">Customer</th>
+          <th scope="col">Status</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Created</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (ticket of list; track ticket.id) {
+          <tr>
+            <td class="id">#{{ ticket.id }}</td>
+            <td>
+              <a [routerLink]="['/tickets', ticket.id]">{{ ticket.title }}</a>
+            </td>
+            <td>{{ ticket.customerName }}</td>
+            <td><app-ticket-status-badge [status]="ticket.status" /></td>
+            <td><app-ticket-priority-badge [priority]="ticket.priority" /></td>
+            <td>{{ ticket.createdAt | date: 'mediumDate' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+}

@@ -57,4 +57,4 @@ json-server v1 reads `db.json` (gitignored). It cannot apply business rules, so 
 
 ## Current state
 
-Done: create a ticket (`/tickets/new`) and view one (`/tickets/:id`). Not built: ticket list, status changes, authentication (planned: guard on the `Shell` route, `login` route outside it, token interceptor), end-to-end tests, CI.
+Done: list all tickets (`/tickets`, not yet in the sidebar), create a ticket (`/tickets/new`) and view one (`/tickets/:id`). Not built: ticket list sidebar link and status filter, status changes, authentication (planned: guard on the `Shell` route, `login` route outside it, token interceptor), end-to-end tests, CI.

@@ -1,0 +1,37 @@
+.page-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+h1 {
+  margin: 0 0 24px;
+}
+a {
+  color: var(--color-primary);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+th {
+  color: var(--color-text-muted);
+  font-weight: 600;
+  background: var(--color-surface-subtle);
+}
+tbody tr:hover {
+  background: var(--color-surface-subtle);
+}
+.id {
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+.empty {
+  color: var(--color-text-muted);
+}
