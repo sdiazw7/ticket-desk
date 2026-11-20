@@ -1,0 +1,31 @@
+{
+  "tickets": [
+    {
+      "id": "1",
+      "title": "Cannot log in to customer portal",
+      "customerName": "Maria Lopez",
+      "description": "Customer gets an 'invalid credentials' error after resetting her password.",
+      "status": "Open",
+      "priority": "High",
+      "createdAt": "2026-11-16T14:30:00.000Z"
+    },
+    {
+      "id": "2",
+      "title": "Refund not received",
+      "customerName": "James Carter",
+      "description": "Refund for order #48213 was approved 10 days ago but has not posted.",
+      "status": "InProgress",
+      "priority": "Medium",
+      "createdAt": "2026-11-15T09:10:00.000Z"
+    },
+    {
+      "id": "3",
+      "title": "Update mailing address",
+      "customerName": "Priya Shah",
+      "description": "Customer moved and needs her mailing address updated.",
+      "status": "Resolved",
+      "priority": "Low",
+      "createdAt": "2026-11-12T17:45:00.000Z"
+    }
+  ]
+}

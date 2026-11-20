@@ -1,0 +1,58 @@
+<form [formRoot]="ticketForm" class="ticket-form" aria-label="New ticket">
+  <div class="field">
+    <label for="title">Title</label>
+    <input id="title" type="text" [formField]="ticketForm.title" aria-describedby="title-error" />
+    <app-field-error
+      id="title-error"
+      [errors]="ticketForm.title().errors()"
+      [show]="ticketForm.title().touched()"
+    />
+  </div>
+
+  <div class="field">
+    <label for="customerName">Customer name</label>
+    <input
+      id="customerName"
+      type="text"
+      [formField]="ticketForm.customerName"
+      aria-describedby="customerName-error"
+    />
+    <app-field-error
+      id="customerName-error"
+      [errors]="ticketForm.customerName().errors()"
+      [show]="ticketForm.customerName().touched()"
+    />
+  </div>
+
+  <div class="field">
+    <label for="priority">Priority</label>
+    <select id="priority" [formField]="ticketForm.priority">
+      @for (priority of priorities; track priority) {
+        <option [value]="priority">{{ priority }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="description">Description <span class="optional">(optional)</span></label>
+    <textarea
+      id="description"
+      rows="5"
+      [formField]="ticketForm.description"
+      aria-describedby="description-error"
+    ></textarea>
+    <app-field-error
+      id="description-error"
+      [errors]="ticketForm.description().errors()"
+      [show]="ticketForm.description().touched()"
+    />
+  </div>
+
+  @if (errorMessage(); as message) {
+    <app-error-alert [message]="message" />
+  }
+
+  <button type="submit" [disabled]="saving()">
+    {{ saving() ? 'Saving...' : 'Create ticket' }}
+  </button>
+</form>

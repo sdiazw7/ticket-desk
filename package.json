@@ -1,0 +1,43 @@
+{
+  "name": "ticket-desk",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "dev": "concurrently --names api,web --prefix-colors blue,green --kill-others-on-fail \"npm run api\" \"ng serve\"",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "lint": "ng lint",
+    "api": "npm run db:init && json-server db.json --port 3000",
+    "db:init": "node -e \"const fs=require('fs');if(!fs.existsSync('db.json'))fs.copyFileSync('db.seed.json','db.json')\"",
+    "db:reset": "node -e \"require('fs').copyFileSync('db.seed.json','db.json')\""
+  },
+  "private": true,
+  "packageManager": "npm@11.8.0",
+  "dependencies": {
+    "@angular/common": "^22.3.0",
+    "@angular/compiler": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@angular/forms": "^22.3.0",
+    "@angular/platform-browser": "^22.3.0",
+    "@angular/router": "^22.3.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^22.3.0",
+    "@angular/cli": "^22.3.0",
+    "@angular/compiler-cli": "^22.3.0",
+    "@eslint/js": "^10.0.1",
+    "angular-eslint": "22.8.0",
+    "concurrently": "^10.0.7",
+    "eslint": "^10.14.0",
+    "jsdom": "^28.0.0",
+    "json-server": "^1.0.0-beta.15",
+    "prettier": "^3.10.1",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "8.72.2",
+    "vitest": "^4.0.8"
+  }
+}
