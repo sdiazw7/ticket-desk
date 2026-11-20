@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { of, throwError } from 'rxjs';
@@ -38,6 +39,17 @@ describe('TicketListPage', () => {
     expect(link?.textContent).toContain(tickets[0].title);
     expect(link?.getAttribute('href')).toBe(`/tickets/${tickets[0].id}`);
     expect(rows[0].textContent).toContain(tickets[0].customerName);
+  });
+
+  it('shows the creation date with hours and minutes', async () => {
+    const ticket = buildTicket();
+    api.list.mockReturnValue(of([ticket]));
+
+    const element = await render();
+
+    // formatDate uses the same local time zone as the page, so this passes in any time zone.
+    const expected = formatDate(ticket.createdAt, 'MMM d, y, h:mm a', 'en-US');
+    expect(element.querySelector('td.created')?.textContent?.trim()).toBe(expected);
   });
 
   it('says so when there are no tickets', async () => {

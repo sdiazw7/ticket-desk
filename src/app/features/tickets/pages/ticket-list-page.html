@@ -32,7 +32,7 @@
             <td>{{ ticket.customerName }}</td>
             <td><app-ticket-status-badge [status]="ticket.status" /></td>
             <td><app-ticket-priority-badge [priority]="ticket.priority" /></td>
-            <td>{{ ticket.createdAt | date: 'mediumDate' }}</td>
+            <td class="created">{{ ticket.createdAt | date: 'MMM d, y, h:mm a' }}</td>
           </tr>
         }
       </tbody>
