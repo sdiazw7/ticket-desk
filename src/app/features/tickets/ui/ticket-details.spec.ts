@@ -27,9 +27,7 @@ describe('TicketDetails', () => {
     const element = await render(buildTicket({ status: 'InProgress', priority: 'High' }));
 
     expect(element.querySelector('app-ticket-status-badge')?.textContent).toContain('In progress');
-    expect(element.querySelector('app-ticket-priority-badge')?.textContent).toContain(
-      'High priority',
-    );
+    expect(element.querySelector('app-ticket-priority-badge')?.textContent?.trim()).toBe('High');
   });
 
   it('says when there is no description', async () => {

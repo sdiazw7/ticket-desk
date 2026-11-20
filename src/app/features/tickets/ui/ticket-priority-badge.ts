@@ -13,7 +13,7 @@ const TONES: Record<TicketPriority, BadgeTone> = {
 @Component({
   selector: 'app-ticket-priority-badge',
   imports: [Badge],
-  template: `<app-badge [tone]="tone()">{{ priority() }} priority</app-badge>`,
+  template: `<app-badge [tone]="tone()">{{ priority() }}</app-badge>`,
 })
 export class TicketPriorityBadge {
   readonly priority = input.required<TicketPriority>();

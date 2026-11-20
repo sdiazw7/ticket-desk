@@ -43,7 +43,7 @@ Run build, lint and tests after every change. Format with Prettier (`npx prettie
 - Move code to `shared/` only when a second feature uses it or one is planned.
 - Status and priority are string union types, not enums.
 - File names have no `.component` / `.service` suffix.
-- Update README.md when structure, conventions or the test count change.
+- Update README.md when structure or conventions change.
 
 ## Testing
 
@@ -54,7 +54,3 @@ Run build, lint and tests after every change. Format with Prettier (`npx prettie
 ## Mock API
 
 json-server v1 reads `db.json` (gitignored). It cannot apply business rules, so `createTicket()` sets `status` and `createdAt` client-side; a real API should own those.
-
-## Current state
-
-Done: list all tickets (`/tickets`, not yet in the sidebar), create a ticket (`/tickets/new`) and view one (`/tickets/:id`). Not built: ticket list sidebar link and status filter, status changes, authentication (planned: guard on the `Shell` route, `login` route outside it, token interceptor), end-to-end tests, CI.

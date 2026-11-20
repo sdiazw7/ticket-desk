@@ -124,18 +124,9 @@ The resulting direction within a feature is: `pages` → `ui` and `data-access` 
 npm test
 ```
 
-39 unit tests cover:
-
-- Domain rules (`createTicket`)
-- Error conversion (`toApiError`) and the error interceptor
-- The shared `Badge` component and text validation rules
-- `TicketApi` requests, verified with `HttpTestingController`
-- The ticket form: validation (including field length limits), emitted values, saving and error states
-- All three pages (list, create, detail), with `TicketApi` and the router replaced by test doubles
-
 ## Possible next steps
 
-- Ticket list: sidebar link, search and filtering by status
+- Ticket list: search and filtering by status
 - Status changes governed by transition rules in `domain/`
 - Authentication: login page, auth guard on the shell and a token interceptor
 - End-to-end tests with Playwright, and a CI pipeline running lint, tests and build

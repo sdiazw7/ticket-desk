@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { IsActiveMatchOptions, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -7,4 +7,15 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
 })
-export class Nav {}
+export class Nav {
+  /**
+   * "Tickets" is active only on /tickets itself. The default prefix match would also mark it
+   * active on /tickets/new. Query params are ignored so a future ?status= filter keeps it active.
+   */
+  protected readonly exactPath: IsActiveMatchOptions = {
+    paths: 'exact',
+    queryParams: 'ignored',
+    matrixParams: 'ignored',
+    fragment: 'ignored',
+  };
+}
