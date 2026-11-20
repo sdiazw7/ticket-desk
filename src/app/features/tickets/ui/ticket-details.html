@@ -1,0 +1,27 @@
+<article class="ticket">
+  <header>
+    <h1>{{ ticket().title }}</h1>
+    <div class="badges">
+      <app-ticket-status-badge [status]="ticket().status" />
+      <app-ticket-priority-badge [priority]="ticket().priority" />
+    </div>
+  </header>
+
+  <dl>
+    <dt>Ticket</dt>
+    <dd>#{{ ticket().id }}</dd>
+    <dt>Customer</dt>
+    <dd>{{ ticket().customerName }}</dd>
+    <dt>Created</dt>
+    <dd>{{ ticket().createdAt | date: 'medium' }}</dd>
+  </dl>
+
+  <section>
+    <h2>Description</h2>
+    @if (ticket().description) {
+      <p class="description">{{ ticket().description }}</p>
+    } @else {
+      <p class="empty">No description provided.</p>
+    }
+  </section>
+</article>

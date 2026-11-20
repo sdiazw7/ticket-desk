@@ -59,7 +59,7 @@ src/app/
     logging/              Logger: the single place diagnostics are written
     layout/               Shell (header, navigation, page area)
   shared/                 Reusable, stateless building blocks with no feature knowledge
-    ui/                   ErrorAlert, FieldError, LoadingIndicator
+    ui/                   Badge, ErrorAlert, FieldError, LoadingIndicator
   features/
     tickets/
       domain/             Ticket types and business rules (plain TypeScript)
@@ -110,16 +110,24 @@ The resulting direction within a feature is: `pages` → `ui` and `data-access` 
 - **Shared components are created only when a second consumer exists or is planned.** Ticket badges stay inside the tickets feature; the error alert, field error and loading indicator are in `shared/` because the planned login page will reuse them.
 - **Ticket defaults are set in the client only because the mock API cannot apply rules.** In production, the server should set the initial status and creation time. See the note in `ticket.factory.ts`.
 
+## Conventions
+
+- **Component files.** A component keeps its template and styles inline only when each fits in about 10 lines (for example, the ticket badges and `ErrorAlert`). Otherwise they live in separate `.html` and `.scss` files next to the component.
+- **Design tokens.** Colors, corner radii and the keyboard focus style are defined once in `src/styles.scss` as CSS custom properties. Components use `var(--color-primary)`, `var(--radius-md)` and so on, never raw values.
+- **Shared presentation, feature-specific meaning.** `Badge` in `shared/ui` owns the look of a badge. The ticket badges only decide which tone and label a status or priority gets.
+- **File names** follow the current Angular style guide: no `.component` or `.service` suffix.
+
 ## Testing
 
 ```bash
 npm test
 ```
 
-30 unit tests cover:
+31 unit tests cover:
 
 - Domain rules (`createTicket`)
 - Error conversion (`toApiError`) and the error interceptor
+- The shared `Badge` component
 - `TicketApi` requests, verified with `HttpTestingController`
 - The ticket form: validation (including field length limits), emitted values, saving and error states
 - Both pages, with `TicketApi` and the router replaced by test doubles

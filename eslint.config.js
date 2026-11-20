@@ -51,7 +51,7 @@ module.exports = defineConfig([
   {
     files: ['src/app/shared/**/*.ts'],
     rules: restrict(noFeatures, {
-      group: ['@core/*', '**/core/**'],
+      group: ['@core/*', '../core/*', '../../core/*'],
       message: 'shared/ must not depend on core/. Shared code should work in any app.',
     }),
   },

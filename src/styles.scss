@@ -37,6 +37,10 @@
   --color-danger-bg: #fde4e2;
   --color-neutral: #4a5563;
   --color-neutral-bg: #eceff3;
+
+  /* Shape */
+  --radius-md: 6px;
+  --radius-pill: 999px;
 }
 
 *,
@@ -55,4 +59,10 @@ body {
     sans-serif;
   color: var(--color-text);
   background: var(--color-surface);
+}
+
+/* One keyboard-focus style for every interactive element. */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }

@@ -1,32 +1,21 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
+import { Badge, BadgeTone } from '@shared/ui/badge';
 import { TicketPriority } from '../domain/ticket.model';
 
+const TONES: Record<TicketPriority, BadgeTone> = {
+  High: 'danger',
+  Medium: 'warning',
+  Low: 'neutral',
+};
+
+/** Maps a ticket priority to a badge tone. */
 @Component({
   selector: 'app-ticket-priority-badge',
-  template: `<span class="badge" [class]="priority()">{{ priority() }} priority</span>`,
-  styles: `
-    .badge {
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 999px;
-      font-size: 0.8125rem;
-      font-weight: 600;
-    }
-    .High {
-      background: var(--color-danger-bg);
-      color: var(--color-danger);
-    }
-    .Medium {
-      background: var(--color-warning-bg);
-      color: var(--color-warning);
-    }
-    .Low {
-      background: var(--color-neutral-bg);
-      color: var(--color-neutral);
-    }
-  `,
+  imports: [Badge],
+  template: `<app-badge [tone]="tone()">{{ priority() }} priority</app-badge>`,
 })
 export class TicketPriorityBadge {
   readonly priority = input.required<TicketPriority>();
+  protected readonly tone = computed(() => TONES[this.priority()]);
 }

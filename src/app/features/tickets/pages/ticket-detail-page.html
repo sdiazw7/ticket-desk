@@ -1,0 +1,12 @@
+@if (ticket.isLoading()) {
+  <app-loading-indicator label="Loading ticket..." />
+} @else if (errorMessage(); as message) {
+  <h1>Ticket #{{ id() }}</h1>
+  <app-error-alert [message]="message" />
+} @else if (ticket.value(); as value) {
+  <app-ticket-details [ticket]="value" />
+}
+
+<p class="actions">
+  <a routerLink="/tickets/new">Create another ticket</a>
+</p>

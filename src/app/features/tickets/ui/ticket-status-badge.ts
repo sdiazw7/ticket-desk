@@ -1,39 +1,21 @@
 import { Component, computed, input } from '@angular/core';
 
+import { Badge, BadgeTone } from '@shared/ui/badge';
 import { TicketStatus } from '../domain/ticket.model';
 
-const LABELS: Record<TicketStatus, string> = {
-  Open: 'Open',
-  InProgress: 'In progress',
-  Resolved: 'Resolved',
+const DISPLAY: Record<TicketStatus, { label: string; tone: BadgeTone }> = {
+  Open: { label: 'Open', tone: 'info' },
+  InProgress: { label: 'In progress', tone: 'warning' },
+  Resolved: { label: 'Resolved', tone: 'success' },
 };
 
+/** Maps a ticket status to a label and badge tone. */
 @Component({
   selector: 'app-ticket-status-badge',
-  template: `<span class="badge" [class]="status()">{{ label() }}</span>`,
-  styles: `
-    .badge {
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 999px;
-      font-size: 0.8125rem;
-      font-weight: 600;
-    }
-    .Open {
-      background: var(--color-info-bg);
-      color: var(--color-info);
-    }
-    .InProgress {
-      background: var(--color-warning-bg);
-      color: var(--color-warning);
-    }
-    .Resolved {
-      background: var(--color-success-bg);
-      color: var(--color-success);
-    }
-  `,
+  imports: [Badge],
+  template: `<app-badge [tone]="display().tone">{{ display().label }}</app-badge>`,
 })
 export class TicketStatusBadge {
   readonly status = input.required<TicketStatus>();
-  protected readonly label = computed(() => LABELS[this.status()]);
+  protected readonly display = computed(() => DISPLAY[this.status()]);
 }

@@ -8,7 +8,7 @@ import { Component, input } from '@angular/core';
     .error-alert {
       margin: 0;
       padding: 10px 12px;
-      border-radius: 6px;
+      border-radius: var(--radius-md);
       background: var(--color-error-bg);
       color: var(--color-error);
     }

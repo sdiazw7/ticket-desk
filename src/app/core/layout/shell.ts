@@ -11,36 +11,7 @@ import { Nav } from './nav';
 @Component({
   selector: 'app-shell',
   imports: [RouterOutlet, Header, Nav],
-  template: `
-    <app-header />
-    <div class="body">
-      <aside class="sidebar">
-        <app-nav />
-      </aside>
-      <main class="content">
-        <router-outlet />
-      </main>
-    </div>
-  `,
-  styles: `
-    :host {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    .body {
-      display: flex;
-      flex: 1;
-    }
-    .sidebar {
-      width: 200px;
-      border-right: 1px solid var(--color-border);
-      background: var(--color-surface-subtle);
-    }
-    .content {
-      flex: 1;
-      padding: 24px 32px;
-    }
-  `,
+  templateUrl: './shell.html',
+  styleUrl: './shell.scss',
 })
 export class Shell {}

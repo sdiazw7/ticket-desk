@@ -12,25 +12,8 @@ import { TicketDetails } from '../ui/ticket-details';
 @Component({
   selector: 'app-ticket-detail-page',
   imports: [RouterLink, ErrorAlert, LoadingIndicator, TicketDetails],
-  template: `
-    @if (ticket.isLoading()) {
-      <app-loading-indicator label="Loading ticket..." />
-    } @else if (errorMessage(); as message) {
-      <h1>Ticket #{{ id() }}</h1>
-      <app-error-alert [message]="message" />
-    } @else if (ticket.value(); as value) {
-      <app-ticket-details [ticket]="value" />
-    }
-
-    <p class="actions">
-      <a routerLink="/tickets/new">Create another ticket</a>
-    </p>
-  `,
-  styles: `
-    .actions {
-      margin-top: 32px;
-    }
-  `,
+  templateUrl: './ticket-detail-page.html',
+  styleUrl: './ticket-detail-page.scss',
 })
 export class TicketDetailPage {
   private readonly api = inject(TicketApi);
