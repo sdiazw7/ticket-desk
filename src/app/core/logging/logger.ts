@@ -10,8 +10,4 @@ export class Logger {
   error(message: string, details?: unknown): void {
     console.error(message, details);
   }
-
-  warn(message: string, details?: unknown): void {
-    console.warn(message, details);
-  }
 }

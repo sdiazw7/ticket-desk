@@ -7,7 +7,7 @@ import { ApiError } from './api-error';
 import { errorInterceptor } from './error.interceptor';
 
 describe('errorInterceptor', () => {
-  const logger = { error: vi.fn(), warn: vi.fn() };
+  const logger = { error: vi.fn() };
   let http: HttpClient;
   let backend: HttpTestingController;
 

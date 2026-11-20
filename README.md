@@ -59,6 +59,7 @@ src/app/
     logging/              Logger: the single place diagnostics are written
     layout/               Shell (header, navigation, page area)
   shared/                 Reusable, stateless building blocks with no feature knowledge
+    forms/                Reusable validation rules: requiredText, maxTextLength
     ui/                   Badge, ErrorAlert, FieldError, LoadingIndicator
   features/
     tickets/
@@ -123,11 +124,11 @@ The resulting direction within a feature is: `pages` → `ui` and `data-access` 
 npm test
 ```
 
-31 unit tests cover:
+35 unit tests cover:
 
 - Domain rules (`createTicket`)
 - Error conversion (`toApiError`) and the error interceptor
-- The shared `Badge` component
+- The shared `Badge` component and text validation rules
 - `TicketApi` requests, verified with `HttpTestingController`
 - The ticket form: validation (including field length limits), emitted values, saving and error states
 - Both pages, with `TicketApi` and the router replaced by test doubles

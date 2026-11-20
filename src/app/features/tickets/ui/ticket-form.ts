@@ -1,6 +1,7 @@
 import { Component, input, output, signal } from '@angular/core';
-import { FormField, FormRoot, form, maxLength, required, validate } from '@angular/forms/signals';
+import { FormField, FormRoot, form } from '@angular/forms/signals';
 
+import { maxTextLength, requiredText } from '@shared/forms/text-validators';
 import { ErrorAlert } from '@shared/ui/error-alert';
 import { FieldError } from '@shared/ui/field-error';
 import { TICKET_LIMITS } from '../domain/ticket.limits';
@@ -39,23 +40,13 @@ export class TicketForm {
   protected readonly ticketForm = form(
     this.model,
     (ticket) => {
-      required(ticket.title, { message: 'Title is required.' });
-      validate(ticket.title, ({ value }) => notBlank(value(), 'Title is required.'));
-      maxLength(ticket.title, titleMaxLength, {
-        message: `Title must be ${titleMaxLength} characters or fewer.`,
-      });
+      requiredText(ticket.title, 'Title is required.');
+      maxTextLength(ticket.title, titleMaxLength, 'Title');
 
-      required(ticket.customerName, { message: 'Customer name is required.' });
-      validate(ticket.customerName, ({ value }) => notBlank(value(), 'Customer name is required.'));
-      maxLength(ticket.customerName, customerNameMaxLength, {
-        message: `Customer name must be ${customerNameMaxLength} characters or fewer.`,
-      });
+      requiredText(ticket.customerName, 'Customer name is required.');
+      maxTextLength(ticket.customerName, customerNameMaxLength, 'Customer name');
 
-      maxLength(ticket.description, descriptionMaxLength, {
-        message: `Description must be ${descriptionMaxLength} characters or fewer.`,
-      });
-
-      required(ticket.priority, { message: 'Priority is required.' });
+      maxTextLength(ticket.description, descriptionMaxLength, 'Description');
     },
     {
       submission: {
@@ -67,9 +58,4 @@ export class TicketForm {
       },
     },
   );
-}
-
-/** Rejects values that contain only spaces (the built-in required check accepts them). */
-function notBlank(value: string, message: string) {
-  return value.length > 0 && value.trim() === '' ? { kind: 'blank', message } : undefined;
 }
